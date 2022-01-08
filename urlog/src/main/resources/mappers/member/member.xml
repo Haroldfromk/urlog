@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	
+	<select id="login" resultType="String">
+		select member_name from memberdb
+		where userid=#{userid} and member_passwd=#{member_passwd}
+	</select>
+	
+	<insert id = "add" > 
+		insert into memberdb(userid, member_passwd, member_name, member_email, member_tel, logo) values
+		(#{userid}, #{member_passwd}, #{member_name}, #{member_email}, #{member_tel}, #{logo})
+	</insert>
+	
+	<update id = "update">
+		update memberdb set member_passwd=#{member_passwd}, member_name=#{member_name}, member_email=#{member_email}, member_tel=#{member_tel}
+		where userid=#{userid}
+	</update>
+	
+	<delete id = "delete">
+		delete from memberdb where userid=#{userid}
+	</delete>
+	
+	<select id = "detail" resultType="com.example.urlog.model.member.MemberDTO">
+		select * from memberdb where userid = #{userid}
+	</select>
+	
+	<select id = "idcheck" resultType="String">
+		select * from memberdb where userid = #{userid}
+	</select>
+	
+	<select id ="check_passwd" resultType="int">
+		select count(*) from memberdb where userid=#{userid} and passwd=#{passwd};
+	</select>
+	
+	<select id ="logo" resultType="String">
+		select logo from memberdb
+		where userid=#{userid} and member_passwd=#{member_passwd}
+	</select>
+</mapper>

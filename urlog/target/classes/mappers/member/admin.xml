@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	
+	<select id="login" resultType="String">
+		select admin_name from admindb
+		where admin_userid=#{admin_userid} and admin_passwd=#{admin_passwd}
+	</select>
+	
+	<insert id = "add" > 
+		insert into admindb(admin_userid, admin_passwd, admin_name) values
+		(#{admin_userid}, #{admin_passwd}, #{admin_name})
+	</insert>
+	
+	<update id = "update">
+		update admindb set admin_passwd=#{admin_passwd}, admin_name=#{admin_name} where admin_userid=#{admin_userid}
+	</update>
+	
+	<delete id = "delete">
+		delete from admindb where admin_userid=#{admin_userid}
+	</delete>
+	
+	<select id = "detail" resultType="com.example.urlog.model.member.AdminDTO">
+		select * from admindb where admin_userid = #{admin_userid}
+	</select>
+	
+	<select id ="check_passwd" resultType="int">
+		select count(*) from admindb where admin_userid=#{admin_userid} and admin_passwd=#{admin_passwd};
+	</select>
+	
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="photo">
+	
+	<select id="list" resultType="com.example.urlog.model.photo.PhotoDTO">
+		select * from Plistdb order by p_idx desc
+	</select>
+	
+	<insert id = "insert" > 
+		insert into Plistdb (userid, p_filename, p_title, p_idx) values
+		(#{userid}, #{p_filename}, #{p_title}, #{p_idx})
+	</insert>
+	
+	<update id = "update">
+		update Plistdb set p_filename=#{p_filename}, p_title=#{p_title}
+		where userid=#{userid} and p_idx=#{p_idx}
+	</update>
+	
+	<delete id = "delete">
+		delete from Plistdb where userid=#{userid} and p_idx=#{p_idx}
+	</delete>
+	
+	<select id = "detail" resultType="com.example.urlog.model.photo.PhotoDTO">
+		select * from Plistdb where p_idx=#{p_idx}
+	</select>
+	
+	<select id="file_info" resultType="String">
+   	select p_filename from Plistdb where userid=#{userid} and p_idx=#{p_idx}
+	</select>
+	
+	<select id="getidx" resultType="int">
+		select max(p_idx) from Plistdb
+	</select>
+	
+	<select id = "detailfm" resultType="com.example.urlog.model.photo.PhotoDTO">
+		select * from Plistdb where p_idx=#{p_idx} and userid=#{userid}
+	</select>
+</mapper>

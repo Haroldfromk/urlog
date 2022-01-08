@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<typeAliases> <!-- 별칭 - dto 객체의 경로와 펴일명이 길면 줄여서 표현할 때 사용 -->
+		<!-- <typeAlias type="com.example.spring02.model.dto.MemberDTO" alias="MemberDTO"/> -->
+	</typeAliases>
+	
+</configuration>
